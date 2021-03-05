@@ -31,7 +31,7 @@ def main():
     cvs_url = 'https://www.cvs.com/immunizations/covid-19-vaccine'
     wal_url = 'https://www.walgreens.com/findcare/vaccination/covid-19/location-screening'
     pc_url = 'https://www.pricechopper.com/covidvaccine/new-york/'
-    han_url = 'https://www.hannaford.com/pharmacy/covid-19-vaccine'
+    han_url = 'https://giantfood.com/pages/covid-info'
     tuc_url = 'https://apps2.health.ny.gov/doh2/applinks/cdmspr/2/counties?DateID=BBF046E734D3128CE0530A6C7C165A0F'
 
     # img urls
@@ -74,21 +74,21 @@ def main():
         if tuc.startswith( 'Available' ) and not last_data['Times Union Center'].startswith( 'Available' ):
             tweet_it('Vaccination appointments are available at Times Union Center '+ tuc_url)
 
-        ##Maybe tweet new unavailability
-        if "Unavailable" == nys and last_data['SUNY Albany'].startswith( 'Available' ):
-            tweet_it('SUNY Albany vaccination appointments are now closed.')
-        if "Unavailable" == cvs and last_data['CVS'].startswith( 'Available' ):
-            tweet_it('CVS vaccination appointments are now closed.')
-        if "Unavailable" == wal and last_data['Walgreens'].startswith( 'Available' ):
-            tweet_it('Walgreens vaccination appointments are now closed.')
-        if "Unavailable" == pc and last_data['Price Chopper'].startswith( 'Available' ):
-            tweet_it('Price Chopper vaccination appointments are now closed.')
-        if "Unavailable" == alb and last_data['Albany Armory'].startswith( 'Available' ):
-            tweet_it('Albany Armory vaccination appointments are now closed.')
-        if "Unavailable" == han and last_data['Hannaford'].startswith( 'Available' ):
-            tweet_it('Hannaford vaccination appointments are now closed.')
-        if "Unavailable" == tuc and last_data['Times Union Center'].startswith( 'Available' ):
-            tweet_it('Times Union Center vaccination appointments are now closed.')
+        # ##Maybe tweet new unavailability
+        # if "Unavailable" == nys and last_data['SUNY Albany'].startswith( 'Available' ):
+        #     tweet_it('SUNY Albany vaccination appointments are now closed.')
+        # if "Unavailable" == cvs and last_data['CVS'].startswith( 'Available' ):
+        #     tweet_it('CVS vaccination appointments are now closed.')
+        # if "Unavailable" == wal and last_data['Walgreens'].startswith( 'Available' ):
+        #     tweet_it('Walgreens vaccination appointments are now closed.')
+        # if "Unavailable" == pc and last_data['Price Chopper'].startswith( 'Available' ):
+        #     tweet_it('Price Chopper vaccination appointments are now closed.')
+        # if "Unavailable" == alb and last_data['Albany Armory'].startswith( 'Available' ):
+        #     tweet_it('Albany Armory vaccination appointments are now closed.')
+        # if "Unavailable" == han and last_data['Hannaford'].startswith( 'Available' ):
+        #     tweet_it('Hannaford vaccination appointments are now closed.')
+        # if "Unavailable" == tuc and last_data['Times Union Center'].startswith( 'Available' ):
+        #     tweet_it('Times Union Center vaccination appointments are now closed.')
 
     except pd.errors.EmptyDataError:
         df_historical = pd.DataFrame()
@@ -116,7 +116,7 @@ def main():
             new_md_content += "| " + pc_img + " [Price Chopper](" + pc_url + ")     | " + stat_check(pc) + "    |\n"
             new_md_content += "| " + cvs_img + " [CVS](" + cvs_url + ")               | " + stat_check(cvs) + "    |\n"
             new_md_content += "| " + wal_img + " [Walgreens](" + wal_url + ")         | " + stat_check(wal) + "    |\n"
-            new_md_content += "| " + han_img + " [Giant Foods](" + han_url + ")         | " + stat_check(han) + "    |\n"
+            new_md_content += "| " + han_img + " [Hannaford](" + han_url + ")         | " + stat_check(han) + "    |\n"
 
         if start_rpl != True:
             new_md_content += stripped_line + "\n"
@@ -254,7 +254,7 @@ def get_cvs_data():
         if 'data' not in json_response['responsePayloadData']:
             return "ERROR"
         else:
-            if 'NY' not in json_response['responsePayloadData']['data']:
+            if 'MD' not in json_response['responsePayloadData']['data']:
                 return "ERROR"
 
     message = ''
