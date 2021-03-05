@@ -116,7 +116,7 @@ def main():
             new_md_content += "| " + pc_img + " [Price Chopper](" + pc_url + ")     | " + stat_check(pc) + "    |\n"
             new_md_content += "| " + cvs_img + " [CVS](" + cvs_url + ")               | " + stat_check(cvs) + "    |\n"
             new_md_content += "| " + wal_img + " [Walgreens](" + wal_url + ")         | " + stat_check(wal) + "    |\n"
-            new_md_content += "| " + han_img + " [Hannaford](" + han_url + ")         | " + stat_check(han) + "    |\n"
+            new_md_content += "| " + han_img + " [Giant Foods](" + han_url + ")         | " + stat_check(han) + "    |\n"
 
         if start_rpl != True:
             new_md_content += stripped_line + "\n"
@@ -172,11 +172,11 @@ def get_nys_appt(json_response, nys_sites):
 def get_han_data():
     session = requests.session()
     try:
-        session.get('https://hannafordsched.rxtouch.com/rbssched/program/covid19/Patient/Advisory')
+        session.get('https://giantfoodsched.rxtouch.com/rbssched/program/covid19/Patient/Advisory')
     except requests.exceptions.RequestException as e:
         return "ERROR"
 
-    url = ' https://hannafordsched.rxtouch.com/rbssched/program/covid19/Calendar/PatientCalendar'
+    url = ' https://giantfoodsched.rxtouch.com/rbssched/program/covid19/Calendar/PatientCalendar'
     tz = timezone('EST')
     year = str(datetime.now(tz).strftime('%Y'))
     month =  datetime.now(tz).strftime('X%m').replace('X0','X').replace('X','')
@@ -243,7 +243,7 @@ def get_pc_data():
 def get_cvs_data():
     headers = {'referer': 'https://www.cvs.com/immunizations/covid-19-vaccine?icid=coronavirus-lp-nav-vaccine'}
     try:
-        req = requests.get('https://www.cvs.com/immunizations/covid-19-vaccine.vaccine-status.NY.json?vaccineinfo', headers=headers)
+        req = requests.get('https://www.cvs.com/immunizations/covid-19-vaccine.vaccine-status.MD.json?vaccineinfo', headers=headers)
     except requests.exceptions.RequestException as e:
         return "ERROR"
 
@@ -258,7 +258,7 @@ def get_cvs_data():
                 return "ERROR"
 
     message = ''
-    for provider in json_response['responsePayloadData']['data']['NY']:
+    for provider in json_response['responsePayloadData']['data']['MD']:
         city = provider['city']
         status = provider['status']
         total = 0
