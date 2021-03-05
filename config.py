@@ -1,6 +1,6 @@
 ## Configuration data
 config = {
-    "zipcode": "12110",
+    "zipcode": "21076",
     "nys_sites": ['SUNY Albany '],
     "alb_sites": ['**Washington Avenue Armory - Albany, Schenectady, Troy'],
     "cvs_sites": ['Baltimore','Bethesda','Bowie','Dunkirk','Easton','Eldersburg','Elkton','Frederick','Fulton','Hagerstown','Havre De Grace','Hyattsville','Lanham','Leonardtown','Millersville','New Carrollton','Ocean City','Reisterstown','Silver Spring','Wheaton','White Plains'],
